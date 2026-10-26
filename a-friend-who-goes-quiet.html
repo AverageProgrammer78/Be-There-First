@@ -162,13 +162,13 @@ body.leaving{opacity:0;transform:translateY(-8px);transition:opacity .28s ease,t
 </style>
 </head>
 <body>
-<div class="crisis">In danger or thinking about suicide? Call or text 988 (US), or call 911[cite: 3].</div>
+<div class="crisis">In danger or thinking about suicide? Call or text 988 (US), or call 911.</div>
 
 <main class="wrap">
   <a class="back" href="index.html">&larr; Back to Home</a>
   <header class="top">
     <h1>A Friend Who Goes Quiet</h1>
-    <p class="lede">Your friend Sam has been pulling away. What you do next could help them feel less alone[cite: 3].</p>
+    <p class="lede">Your friend Sam has been pulling away. What you do next could help them feel less alone.</p>
   </header>
 
   <section class="hud" id="hud" hidden aria-label="Your progress">
@@ -180,10 +180,10 @@ body.leaving{opacity:0;transform:translateY(-8px);transition:opacity .28s ease,t
   </section>
 
   <section class="stage" id="stage" aria-live="polite"></section>
-  <p class="note" id="note" hidden>Your progress is not saved. Closing or reloading this tab resets the story[cite: 3].</p>
+  <p class="note" id="note" hidden>Your progress is not saved. Closing or reloading this tab resets the story.</p>
 </main>
 
-<footer><div class="wrap">Explanations are written for learning and based on the Look, Listen, Link approach in WHO, <i>Psychological First Aid: Guide for Field Workers</i> (2011), and on NCTSN and National Center for PTSD, <i>Psychological First Aid: Field Operations Guide</i> (2006). This story is practice, not therapy or medical advice[cite: 3].</div></footer>
+<footer><div class="wrap">Explanations are written for learning and based on the Look, Listen, Link approach in WHO, <i>Psychological First Aid: Guide for Field Workers</i> (2011), and on NCTSN and National Center for PTSD, <i>Psychological First Aid: Field Operations Guide</i> (2006). This story is practice, not therapy or medical advice.</div></footer>
 
 <script>
 const el = (tag, text, cls) => { const e = document.createElement(tag); if (text) e.textContent = text; if (cls) e.className = cls; return e; };
@@ -193,71 +193,71 @@ const $ = id => document.getElementById(id);
 /* ---------- Story data ---------- */
 const STEP = { q1: [1, "Look"], q1b: [1, "Look"], q2: [2, "Listen"], q3: [3, "Listen"], q4: [4, "Link"] };
 const SCENES = {
-  q1: { text: `For a few weeks now, Sam has stopped sitting with your group at lunch. Their texts come back late and short, and they seem tired and flat. Today you spot them eating alone and scrolling on their phone[cite: 3].`, choices: [
-    { label: `Decide it is none of your business and leave them alone[cite: 3].`, good: false, trust: -10, next: "q1b",
-      reaction: `You sit with the group as usual. Across the cafeteria, Sam keeps scrolling, and no one goes over[cite: 3].`,
-      explain: `It is natural to hesitate because you do not want to pry. But a noticeable change in someone, like pulling away or seeming flat for weeks, is exactly what Look is about. A small, low-pressure check-in is rarely unwelcome, and sometimes it is the only one they get[cite: 3].`,
-      better: `Wait until the group has left, then sit down and say: "I've missed you at lunch. Want to hang out?"[cite: 3]` },
-    { label: `Sit down and say, loudly: "Why have you been so weird lately?"[cite: 3]`, good: false, trust: -15, next: "q1b",
-      reaction: `Sam's face flushes. "I'm fine," they mutter, and they pack up their lunch and leave[cite: 3].`,
-      explain: `You noticed, which is good, but the way you said it made the problem about Sam being "weird" in front of other people. Calling out a change publicly can feel like shame, so people shut down. Check-ins land best in private and without labels[cite: 3].`,
-      better: `Choose a quiet moment and lead with care: "I've missed you at lunch. Want to hang out?"[cite: 3]` },
-    { label: `Wait until the group leaves, then sit down and say: "I've missed you at lunch. Want to hang out?"[cite: 3]`, good: true, trust: 15, badge: "Look", next: "q2",
-      reaction: `Sam looks up, surprised. "Yeah. Sure," they say, and move their bag so you can sit[cite: 3].`,
-      explain: `You noticed the change, chose a private moment, and led with care instead of questions or labels. "I've missed you" says you value them, without asking them to explain anything yet[cite: 3].` }
+  q1: { text: `For a few weeks now, Sam has stopped sitting with your group at lunch. Their texts come back late and short, and they seem tired and flat. Today you spot them eating alone and scrolling on their phone.`, choices: [
+    { label: `Decide it is none of your business and leave them alone.`, good: false, trust: -10, next: "q1b",
+      reaction: `You sit with the group as usual. Across the cafeteria, Sam keeps scrolling, and no one goes over.`,
+      explain: `It is natural to hesitate because you do not want to pry. But a noticeable change in someone, like pulling away or seeming flat for weeks, is exactly what Look is about. A small, low-pressure check-in is rarely unwelcome, and sometimes it is the only one they get.`,
+      better: `Wait until the group has left, then sit down and say: "I've missed you at lunch. Want to hang out?"` },
+    { label: `Sit down and say, loudly: "Why have you been so weird lately?"`, good: false, trust: -15, next: "q1b",
+      reaction: `Sam's face flushes. "I'm fine," they mutter, and they pack up their lunch and leave.`,
+      explain: `You noticed, which is good, but the way you said it made the problem about Sam being "weird" in front of other people. Calling out a change publicly can feel like shame, so people shut down. Check-ins land best in private and without labels.`,
+      better: `Choose a quiet moment and lead with care: "I've missed you at lunch. Want to hang out?"` },
+    { label: `Wait until the group leaves, then sit down and say: "I've missed you at lunch. Want to hang out?"`, good: true, trust: 15, badge: "Look", next: "q2",
+      reaction: `Sam looks up, surprised. "Yeah. Sure," they say, and move their bag so you can sit.`,
+      explain: `You noticed the change, chose a private moment, and led with care instead of questions or labels. "I've missed you" says you value them, without asking them to explain anything yet.` }
   ]},
-  q1b: { text: `Later, you see Sam walking out of class alone. You can still reach out[cite: 3].`, choices: [
-    { label: `Walk beside them and say: "You've seemed down lately. No pressure, I just wanted you to know I'm here."[cite: 3]`, good: true, trust: 10, badge: "Look", repair: true, next: "q2",
-      reaction: `Sam hesitates, then gives a small nod. "Thanks," they say. "Walk with me?"[cite: 3]`,
-      explain: `Coming back after a missed chance rebuilds trust quickly. You named what you noticed gently and made it clear there was no pressure. That earns a repair bonus[cite: 3].` },
-    { label: `Let it go. They will come around on their own[cite: 3].`, good: false, trust: -10, next: "end_missed",
-      reaction: `You head home. Sam walks out alone, and the week goes by much the same[cite: 3].`,
-      explain: `Waiting for someone to "come around" often means they stay alone with whatever is going on. People who are struggling do not always reach out first, and a second try is usually welcome[cite: 3].`,
-      better: `Walk with them and say: "You've seemed down lately. I'm here if you want to talk."[cite: 3]` }
+  q1b: { text: `Later, you see Sam walking out of class alone. You can still reach out.`, choices: [
+    { label: `Walk beside them and say: "You've seemed down lately. No pressure, I just wanted you to know I'm here."`, good: true, trust: 10, badge: "Look", repair: true, next: "q2",
+      reaction: `Sam hesitates, then gives a small nod. "Thanks," they say. "Walk with me?"`,
+      explain: `Coming back after a missed chance rebuilds trust quickly. You named what you noticed gently and made it clear there was no pressure. That earns a repair bonus.` },
+    { label: `Let it go. They will come around on their own.`, good: false, trust: -10, next: "end_missed",
+      reaction: `You head home. Sam walks out alone, and the week goes by much the same.`,
+      explain: `Waiting for someone to "come around" often means they stay alone with whatever is going on. People who are struggling do not always reach out first, and a second try is usually welcome.`,
+      better: `Walk with them and say: "You've seemed down lately. I'm here if you want to talk."` }
   ]},
-  q2: { text: `Sam shrugs. "I'm just tired," they say. "Everything feels heavy lately, and I don't really feel like talking to anyone."[cite: 3]`, choices: [
-    { label: `Say: "That sounds really hard. Do you want to tell me more, or just have some company?"[cite: 3]`, good: true, trust: 15, badge: "Listen", next: "q3",
-      reaction: `Sam lets out a slow breath. "Honestly? Company is nice," they say. After a minute they add, "It's been like this for a while."[cite: 3]`,
-      explain: `You named how it sounds without arguing with it, and you gave Sam control over how much to share. Offering company or conversation lets them choose, and that makes opening up feel safer[cite: 3].` },
-    { label: `Say: "Everyone gets tired. You just need to get out more and try harder."[cite: 3]`, good: false, trust: -15, next: "q2",
-      reaction: `Sam's shoulders drop. "Right. Yeah," they say, and look back at their phone[cite: 3].`,
-      explain: `This turns their feeling into a lack of effort, which can add guilt to an already heavy mood. Listening comes before advice, and "try harder" is rarely helpful to someone who feels worn out[cite: 3].`,
-      better: `"That sounds really hard. I'm here if you want to talk about it."[cite: 3]` },
-    { label: `Say: "Cheer up! Let's do something fun. That always fixes it!"[cite: 3]`, good: false, trust: -10, next: "q2",
-      reaction: `Sam gives a thin smile. "Maybe another time," they say[cite: 3].`,
-      explain: `Trying to cheer someone up quickly can feel like being asked to stop feeling what they feel. Fun plans can be great later, but first they need to feel heard[cite: 3].`,
-      better: `"That sounds heavy. Want to tell me more, or just hang out?"[cite: 3]` }
+  q2: { text: `Sam shrugs. "I'm just tired," they say. "Everything feels heavy lately, and I don't really feel like talking to anyone."`, choices: [
+    { label: `Say: "That sounds really hard. Do you want to tell me more, or just have some company?"`, good: true, trust: 15, badge: "Listen", next: "q3",
+      reaction: `Sam lets out a slow breath. "Honestly? Company is nice," they say. After a minute they add, "It's been like this for a while."`,
+      explain: `You named how it sounds without arguing with it, and you gave Sam control over how much to share. Offering company or conversation lets them choose, and that makes opening up feel safer.` },
+    { label: `Say: "Everyone gets tired. You just need to get out more and try harder."`, good: false, trust: -15, next: "q2",
+      reaction: `Sam's shoulders drop. "Right. Yeah," they say, and look back at their phone.`,
+      explain: `This turns their feeling into a lack of effort, which can add guilt to an already heavy mood. Listening comes before advice, and "try harder" is rarely helpful to someone who feels worn out.`,
+      better: `"That sounds really hard. I'm here if you want to talk about it."` },
+    { label: `Say: "Cheer up! Let's do something fun. That always fixes it!"`, good: false, trust: -10, next: "q2",
+      reaction: `Sam gives a thin smile. "Maybe another time," they say.`,
+      explain: `Trying to cheer someone up quickly can feel like being asked to stop feeling what they feel. Fun plans can be great later, but first they need to feel heard.`,
+      better: `"That sounds heavy. Want to tell me more, or just hang out?"` }
   ]},
-  q3: { text: `Sam says it has been going on for a few weeks. They are sleeping badly, nothing feels fun, and they feel like they are letting everyone down[cite: 3].`, choices: [
-    { label: `Say: "Thank you for telling me. That sounds exhausting, and I'm glad you're not carrying it alone."[cite: 3]`, good: true, trust: 10, badge: "Listen", next: "q4",
-      reaction: `Sam's eyes well up. "I didn't know if anyone would care," they say quietly[cite: 3].`,
-      explain: `You acknowledged how much they are carrying and let them know they are not alone with it. You did not diagnose, fix, or rush. That steady response is what makes it safe to say more[cite: 3].` },
-    { label: `Say: "You should see a therapist. Honestly, you probably have depression."[cite: 3]`, good: false, trust: -10, next: "q3",
-      reaction: `Sam stiffens. "I don't need a label," they say[cite: 3].`,
-      explain: `Suggesting support can be helpful, but diagnosing is not a friend's job, and a label can make someone feel judged or defined. You can encourage help without naming what is wrong[cite: 3].`,
-      better: `"Thank you for telling me. That sounds exhausting. I'm glad you're not carrying it alone."[cite: 3]` },
-    { label: `Change the subject to something lighter, because it feels too heavy[cite: 3].`, good: false, trust: -5, next: "q3",
-      reaction: `Sam goes quiet and nods. The moment to say more closes[cite: 3].`,
-      explain: `It is normal to feel uncomfortable with heavy feelings, but switching topics can tell someone their feelings are too much. You do not need perfect words. Staying with them is enough[cite: 3].`,
-      better: `"That sounds really hard. I'm here. You don't have to say more than you want to."[cite: 3]` }
+  q3: { text: `Sam says it has been going on for a few weeks. They are sleeping badly, nothing feels fun, and they feel like they are letting everyone down.`, choices: [
+    { label: `Say: "Thank you for telling me. That sounds exhausting, and I'm glad you're not carrying it alone."`, good: true, trust: 10, badge: "Listen", next: "q4",
+      reaction: `Sam's eyes well up. "I didn't know if anyone would care," they say quietly.`,
+      explain: `You acknowledged how much they are carrying and let them know they are not alone with it. You did not diagnose, fix, or rush. That steady response is what makes it safe to say more.` },
+    { label: `Say: "You should see a therapist. Honestly, you probably have depression."`, good: false, trust: -10, next: "q3",
+      reaction: `Sam stiffens. "I don't need a label," they say.`,
+      explain: `Suggesting support can be helpful, but diagnosing is not a friend's job, and a label can make someone feel judged or defined. You can encourage help without naming what is wrong.`,
+      better: `"Thank you for telling me. That sounds exhausting. I'm glad you're not carrying it alone."` },
+    { label: `Change the subject to something lighter, because it feels too heavy.`, good: false, trust: -5, next: "q3",
+      reaction: `Sam goes quiet and nods. The moment to say more closes.`,
+      explain: `It is normal to feel uncomfortable with heavy feelings, but switching topics can tell someone their feelings are too much. You do not need perfect words. Staying with them is enough.`,
+      better: `"That sounds really hard. I'm here. You don't have to say more than you want to."` }
   ]},
-  q4: { text: `Sam seems a little lighter after talking. Lunch is almost over[cite: 3].`, choices: [
-    { label: `Ask: "Would you want to talk to the school counselor or someone you trust? I can come with you." Then say you will check in again this week[cite: 3].`, good: true, trust: 10, badge: "Link", next: "end_good",
-      reaction: `Sam thinks for a moment. "Maybe the counselor," they say. "Could you come the first time?" You agree, and you both put a time in your phones[cite: 3].`,
-      explain: `This is Link: helping Sam reach people with training while they keep control of the choice. Offering to come along makes the step smaller, and promising to check in shows this is not a one-time thing. Feeling low for weeks is worth sharing with a counselor or doctor[cite: 3].` },
-    { label: `Say: "Okay, I'm glad we talked. Let's keep it just between us."[cite: 3]`, good: false, trust: -5, next: "end_ok",
-      reaction: `Sam nods, relieved for now. Over the next few weeks, nothing about how they have been feeling changes[cite: 3].`,
-      explain: `Being someone Sam trusts is valuable. But when someone has felt low for weeks, one friend may not be enough support, and agreeing to keep everything secret makes it harder to bring in other help. Respect their privacy, but do not promise that no one else can ever be told[cite: 3].`,
-      better: `"Would you want to talk to the school counselor or someone you trust? I can come with you."[cite: 3]` },
-    { label: `Say: "Glad you're feeling a bit better. See you later!" and head to class[cite: 3].`, good: false, trust: 0, next: "end_ok",
-      reaction: `Sam smiles weakly and nods. You both head off, and the conversation is left where it was[cite: 3].`,
-      explain: `Listening mattered a lot. The missing step is Link: if the heavy feelings keep going, Sam may need more support than a friend can give. A short offer to connect them with someone is easy to add[cite: 3].`,
-      better: `"Would you want to talk to the school counselor or someone you trust? I can come with you."[cite: 3]` }
+  q4: { text: `Sam seems a little lighter after talking. Lunch is almost over.`, choices: [
+    { label: `Ask: "Would you want to talk to the school counselor or someone you trust? I can come with you." Then say you will check in again this week.`, good: true, trust: 10, badge: "Link", next: "end_good",
+      reaction: `Sam thinks for a moment. "Maybe the counselor," they say. "Could you come the first time?" You agree, and you both put a time in your phones.`,
+      explain: `This is Link: helping Sam reach people with training while they keep control of the choice. Offering to come along makes the step smaller, and promising to check in shows this is not a one-time thing. Feeling low for weeks is worth sharing with a counselor or doctor.` },
+    { label: `Say: "Okay, I'm glad we talked. Let's keep it just between us."`, good: false, trust: -5, next: "end_ok",
+      reaction: `Sam nods, relieved for now. Over the next few weeks, nothing about how they have been feeling changes.`,
+      explain: `Being someone Sam trusts is valuable. But when someone has felt low for weeks, one friend may not be enough support, and agreeing to keep everything secret makes it harder to bring in other help. Respect their privacy, but do not promise that no one else can ever be told.`,
+      better: `"Would you want to talk to the school counselor or someone you trust? I can come with you."` },
+    { label: `Say: "Glad you're feeling a bit better. See you later!" and head to class.`, good: false, trust: 0, next: "end_ok",
+      reaction: `Sam smiles weakly and nods. You both head off, and the conversation is left where it was.`,
+      explain: `Listening mattered a lot. The missing step is Link: if the heavy feelings keep going, Sam may need more support than a friend can give. A short offer to connect them with someone is easy to add.`,
+      better: `"Would you want to talk to the school counselor or someone you trust? I can come with you."` }
   ]}
 };
 const ENDINGS = {
  "end_good": {
-  "text": "Sam is not fixed in one conversation, and that is okay. You noticed the change, listened without judging, and helped them reach for more support. Checking in again will matter just as much as today did[cite: 3].",
+  "text": "Sam is not fixed in one conversation, and that is okay. You noticed the change, listened without judging, and helped them reach for more support. Checking in again will matter just as much as today did.",
   "ranks": [
    [
     80,
@@ -272,7 +272,7 @@ const ENDINGS = {
   ]
  },
  "end_ok": {
-  "text": "You noticed Sam and listened, and that mattered. The missing piece was Link: connecting them with a counselor or another trusted adult so they have more support than one friend can give[cite: 3].",
+  "text": "You noticed Sam and listened, and that mattered. The missing piece was Link: connecting them with a counselor or another trusted adult so they have more support than one friend can give.",
   "ranks": [
    [
     0,
@@ -282,7 +282,7 @@ const ENDINGS = {
   ]
  },
  "end_missed": {
-  "text": "Sam spent another stretch of days alone. The moment is not lost. You can still invite them to hang out or send a friendly message, and now you know what to try[cite: 3].",
+  "text": "Sam spent another stretch of days alone. The moment is not lost. You can still invite them to hang out or send a friendly message, and now you know what to try.",
   "ranks": [
    [
     0,
@@ -432,12 +432,12 @@ function applyChoice(c) {
 }
 function showIntro() {
   const rules = el("ul", "", "rules");
-  [`Each choice changes ${META.name}'s trust. Helpful choices raise it and unhelpful ones lower it[cite: 3].`,
-   META.scoring ? "Earn the Look, Listen, and Link badges, and build a streak for bonus points[cite: 3]." : "Earn the Look, Listen, and Link badges as you help[cite: 3].",
-   "After every choice you get a plain explanation of what went well or what went wrong[cite: 3].",
-   "Wrong turns are part of practice. You can try again[cite: 3]."].forEach(t => rules.appendChild(el("li", t)));
+  [`Each choice changes ${META.name}'s trust. Helpful choices raise it and unhelpful ones lower it.`,
+   META.scoring ? "Earn the Look, Listen, and Link badges, and build a streak for bonus points." : "Earn the Look, Listen, and Link badges as you help.",
+   "After every choice you get a plain explanation of what went well or what went wrong.",
+   "Wrong turns are part of practice. You can try again."].forEach(t => rules.appendChild(el("li", t)));
   const warn = el("div", "", "warn"), p1 = el("p");
-  p1.append(el("b", "Your progress is not saved. "), document.createTextNode(`If you close or reload this tab, your ${META.scoring ? "score and choices are" : "choices are"} lost and you will start over[cite: 3].`));
+  p1.append(el("b", "Your progress is not saved. "), document.createTextNode(`If you close or reload this tab, your ${META.scoring ? "score and choices are" : "choices are"} lost and you will start over.`));
   warn.append(p1, el("p", META.safety));
   const go = el("button", "Start the Story", "start"); go.onclick = cinematic;
   const nodes = [el("small", "Before You Start"), P(META.intro)];
@@ -506,4 +506,3 @@ b.onclick=()=>{on=!on;b.classList.toggle("off",!on);if(on){go=false;start()}else
 </script>
 </body>
 </html>
-```[cite: 3]
