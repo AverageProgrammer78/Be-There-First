@@ -162,7 +162,7 @@ body.leaving{opacity:0;transform:translateY(-8px);transition:opacity .28s ease,t
 </style>
 </head>
 <body>
-<div class="crisis">In danger or thinking about suicide? Call or text 988 (US), or call 911[cite: 3, 4, 5].</div>
+<div class="crisis">In danger or thinking about suicide? Call or text 988 (US), or call 911.</div>
 
 <main class="wrap">
   <a class="back" href="index.html">&larr; Back to Home</a>
@@ -491,15 +491,15 @@ document.addEventListener("click", e => {
 addEventListener("pageshow", () => document.body.classList.remove("leaving"));
 showIntro();
 </script>
-<button id="mute" class="off" aria-label="Toggle music: Lux Aetern" title="Music: Lux Aetern (Off) [Author: Lux Aetern]">&#9835;</button>
+<button id="mute" class="off" aria-label="Toggle music: Lux Aeterna" title="Music: Lux Aetern (Off) [Author: Lux Aeterna]">&#9835;</button>
 <script>
-(()=>{const a=new Audio('audio/lux-aetern.mp3');a.loop=true;a.volume=0;let on=false;const b=document.getElementById("mute");
+(()=>{const a=new Audio('lux-aeterna-minecraft-fall-mood-605748.mp3');a.loop=true;a.volume=0;let on=false;const b=document.getElementById("mute");
 const fade=to=>{clearInterval(a._f);a._f=setInterval(()=>{const d=to-a.volume;if(Math.abs(d)<.02){a.volume=to;clearInterval(a._f);if(!to)a.pause()}else a.volume=Math.max(0,Math.min(1,a.volume+d*.12))},50)};
 b.onclick=()=>{
   on=!on;
   b.classList.toggle("off",!on);
-  b.title = on ? "Music: Lux Aetern (On) [Author: Lux Aetern]" : "Music: Lux Aetern (Off) [Author: Lux Aetern]";
-  if(on){a.play().then(()=>fade(.35)).catch(()=>{on=false;b.classList.add("off");b.title="Music: Lux Aetern (Off) [Author: Lux Aetern]";})}
+  b.title = on ? "Music: Lux Aetern (On) [Author: Lux Aeterna]" : "Music: Lux Aetern (Off) [Author: Lux Aeterna]";
+  if(on){a.play().then(()=>fade(.35)).catch(()=>{on=false;b.classList.add("off");b.title="Music: Lux Aetern (Off) [Author: Lux Aeterna]";})}
   else{fade(0)}
 };
 })();
