@@ -11,20 +11,24 @@
 :root{--bg:#EEF3F1;--panel:#F9FBFA;--ink:#14201C;--muted:#4A5C56;--main:#1F5C4A;--line:#B9C9C3;--crisis:#C8401B;--crisisbg:#FBE9E2;--ease:cubic-bezier(.2,.8,.2,1)}
 @media(prefers-color-scheme:dark){:root{--bg:#0E1714;--panel:#15231E;--ink:#E7F0EC;--muted:#9DB3AB;--main:#6FC7A5;--line:#2B403A;--crisis:#FF9B76;--crisisbg:#2B1A13}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 1.05rem/1.6 "Schibsted Grotesk",system-ui,sans-serif}
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.05rem/1.6 "Schibsted Grotesk",system-ui,sans-serif;display:flex;flex-direction:column}
 h1{font-family:Gloock,Georgia,serif;font-weight:400;line-height:1.05;margin:0;font-size:clamp(2.8rem,9vw,5rem);letter-spacing:-.02em}
-.wrap{max-width:760px;margin:0 auto;padding:0 1.25rem}
-.crisis{background:var(--crisisbg);color:var(--crisis);font-weight:600;text-align:center;padding:.6rem 1rem;font-size:.95rem}
+.wrap{max-width:760px;width:100%;margin:0 auto;padding:0 1.25rem;flex:1;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.crisis{background:var(--crisisbg);color:var(--crisis);font-weight:600;text-align:center;padding:.6rem 1rem;font-size:.95rem;flex-shrink:0}
 a{color:var(--ink)}
 a:focus-visible,button:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
 button{font:inherit;cursor:pointer}
 @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 @keyframes pop{0%{transform:scale(.7)}60%{transform:scale(1.1)}100%{transform:scale(1)}}
 @keyframes float{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-26px)}}
-.back{display:inline-block;margin:1.5rem 0 1rem;color:var(--muted);text-decoration:none;transition:color .2s,transform .3s var(--ease)}
+.back{display:inline-block;margin:1rem 0 .5rem;color:var(--muted);text-decoration:none;transition:color .2s,transform .3s var(--ease)}
 .back:hover{color:var(--ink);transform:translateX(-4px)}
 
-.lede{font-size:1.2rem;max-width:36ch;margin:1.25rem 0 1.75rem}
+.lede{font-size:1.2rem;max-width:36ch;margin:1rem 0 1.5rem}
 
 /* HUD */
 .hud{display:grid;grid-template-columns:2fr 1fr 1fr;gap:1.25rem;background:var(--panel);border:1.5px solid var(--ink);border-radius:6px;padding:1.1rem 1.25rem;animation:dropin .7s var(--ease) backwards}
@@ -42,7 +46,7 @@ button{font:inherit;cursor:pointer}
 .gain{position:absolute;left:0;top:-.3rem;color:var(--main);font-weight:600;pointer-events:none;animation:float 1s forwards}
 
 /* stage */
-.stage{margin-top:1.25rem;background:var(--panel);border:1.5px solid var(--ink);border-radius:6px;padding:1.6rem;min-height:16rem}
+.stage{margin-top:1rem;margin-bottom:1rem;background:var(--panel);border:1.5px solid var(--ink);border-radius:6px;padding:1.6rem;max-height:60vh;overflow-y:auto}
 
 .stage small{display:block;color:var(--muted);margin:1.1rem 0 .15rem}
 .stage>small:first-child{margin-top:0}
@@ -65,8 +69,8 @@ button{font:inherit;cursor:pointer}
 .final small{margin:0!important}
 .log{margin:.25rem 0 1rem;padding-left:1.3rem}
 .log li{margin-bottom:.3rem}
-.note{color:var(--muted);font-size:.92rem;margin:1rem 0 0}
-footer{border-top:1px solid var(--line);margin-top:3rem;padding:2rem 0 4rem;color:var(--muted);font-size:.9rem}
+.note{color:var(--muted);font-size:.92rem;margin:0 0 1rem}
+footer{border-top:1px solid var(--line);padding:1rem 0 1.5rem;color:var(--muted);font-size:.9rem;flex-shrink:0}
 body{animation:fadein .5s backwards}
 body.leaving{opacity:0;transform:translateY(-8px);transition:opacity .28s ease,transform .28s ease}
 @keyframes fadein{from{opacity:0}}
@@ -158,13 +162,13 @@ body.leaving{opacity:0;transform:translateY(-8px);transition:opacity .28s ease,t
 </style>
 </head>
 <body>
-<div class="crisis">In danger or thinking about suicide? Call or text 988 (US), or call 911[cite: 3].</div>
+<div class="crisis">In danger or thinking about suicide? Call or text 988 (US), or call 911[cite: 5].</div>
 
 <main class="wrap">
   <a class="back" href="index.html">&larr; Back to Home</a>
   <header class="top">
     <h1>Panic at the Locker</h1>
-    <p class="lede">Your friend Maya is having a hard moment between classes. What you say and do next matters[cite: 3].</p>
+    <p class="lede">Your friend Maya is having a hard moment between classes. What you say and do next matters[cite: 5].</p>
   </header>
 
   <section class="hud" id="hud" hidden aria-label="Your progress">
@@ -176,10 +180,10 @@ body.leaving{opacity:0;transform:translateY(-8px);transition:opacity .28s ease,t
   </section>
 
   <section class="stage" id="stage" aria-live="polite"></section>
-  <p class="note" id="note" hidden>Your progress is not saved. Closing or reloading this tab resets the story[cite: 3].</p>
+  <p class="note" id="note" hidden>Your progress is not saved. Closing or reloading this tab resets the story[cite: 5].</p>
 </main>
 
-<footer><div class="wrap">Explanations are written for learning and based on the Look, Listen, Link approach in WHO, <i>Psychological First Aid: Guide for Field Workers</i> (2011), and on NCTSN and National Center for PTSD, <i>Psychological First Aid: Field Operations Guide</i> (2006). This story is practice, not therapy or medical advice[cite: 3].</div></footer>
+<footer><div class="wrap">Explanations are written for learning and based on the Look, Listen, Link approach in WHO, <i>Psychological First Aid: Guide for Field Workers</i> (2011), and on NCTSN and National Center for PTSD, <i>Psychological First Aid: Field Operations Guide</i> (2006). This story is practice, not therapy or medical advice[cite: 5].</div></footer>
 
 <script>
 const el = (tag, text, cls) => { const e = document.createElement(tag); if (text) e.textContent = text; if (cls) e.className = cls; return e; };
@@ -189,71 +193,71 @@ const $ = id => document.getElementById(id);
 /* ---------- Story data ---------- */
 const STEP = { s1: [1, "Look"], s1b: [1, "Look"], s2: [2, "Listen"], s3: [3, "Listen"], s4: [4, "Link"] };
 const SCENES = {
-  s1: { text: `Maya is at her locker between classes. Her hands are shaking and she is breathing fast. Other students stream past. You are standing next to her.`, choices: [
-    { label: `Tell her to calm down.`, good: false, trust: -15, next: "s1b",
-      reaction: `Maya looks away and her breathing speeds up. "I'm fine," she mutters, and starts to walk off.`,
-      explain: `Panic is not something a person can switch off on command. Hearing "calm down" usually makes someone feel judged or embarrassed, so her body stays on alert and she pulls away. The Look step is about noticing what is happening and responding to the person, not correcting the feeling.`,
-      better: `Say what you see and offer a choice: "Hey, I'm right here. Want to step somewhere quieter?"` },
-    { label: `Quietly say: "Hey, I'm right here. Want to step somewhere quieter?"`, good: true, trust: 15, badge: "Look", next: "s2",
-      reaction: `Maya nods without speaking. You walk with her to the empty stairwell by the gym.`,
-      explain: `You noticed she was struggling and, instead of trying to fix it, you offered a choice. A quieter place lowers the noise and the audience, which often helps a person settle. "I'm right here" tells her she is not alone without pressuring her to explain anything.` },
-    { label: `Pretend you did not notice and head to class.`, good: false, trust: -10, next: "s1b",
-      reaction: `You walk away. When you glance back, Maya has pressed her forehead against the locker door.`,
-      explain: `Looking away is common because it feels awkward, but Look only works if you act on what you notice. Friends often spot distress before adults do, and a small check-in can matter a lot.`,
-      better: `A short, low-pressure check-in is enough: "Hey, you okay? I'm here."` }
+  s1: { text: `Maya is at her locker between classes. Her hands are shaking and she is breathing fast. Other students stream past. You are standing next to her[cite: 5].`, choices: [
+    { label: `Tell her to calm down[cite: 5].`, good: false, trust: -15, next: "s1b",
+      reaction: `Maya looks away and her breathing speeds up. "I'm fine," she mutters, and starts to walk off[cite: 5].`,
+      explain: `Panic is not something a person can switch off on command. Hearing "calm down" usually makes someone feel judged or embarrassed, so her body stays on alert and she pulls away. The Look step is about noticing what is happening and responding to the person, not correcting the feeling[cite: 5].`,
+      better: `Say what you see and offer a choice: "Hey, I'm right here. Want to step somewhere quieter?"[cite: 5]` },
+    { label: `Quietly say: "Hey, I'm right here. Want to step somewhere quieter?"[cite: 5]`, good: true, trust: 15, badge: "Look", next: "s2",
+      reaction: `Maya nods without speaking. You walk with her to the empty stairwell by the gym[cite: 5].`,
+      explain: `You noticed she was struggling and, instead of trying to fix it, you offered a choice. A quieter place lowers the noise and the audience, which often helps a person settle. "I'm right here" tells her she is not alone without pressuring her to explain anything[cite: 5].` },
+    { label: `Pretend you did not notice and head to class[cite: 5].`, good: false, trust: -10, next: "s1b",
+      reaction: `You walk away. When you glance back, Maya has pressed her forehead against the locker door[cite: 5].`,
+      explain: `Looking away is common because it feels awkward, but Look only works if you act on what you notice. Friends often spot distress before adults do, and a small check-in can matter a lot[cite: 5].`,
+      better: `A short, low-pressure check-in is enough: "Hey, you okay? I'm here."[cite: 5]` }
   ]},
-  s1b: { text: `Maya is moving down the hallway alone, one hand trailing along the wall. You can still go after her.`, choices: [
-    { label: `Catch up and say: "Sorry, that wasn't helpful. I'm here if you want me."`, good: true, trust: 10, badge: "Look", repair: true, next: "s2",
-      reaction: `Maya slows down. "Okay," she says quietly. "Somewhere quieter, maybe."`,
-      explain: `Owning a misstep and trying again rebuilds trust faster than pretending it did not happen. You do not have to be perfect. You came back, and that is what matters. You earned a repair bonus.` },
-    { label: `Let her go.`, good: false, trust: -15, next: "end_missed",
-      reaction: `You head to class. Maya is on her own for the rest of the period.`,
-      explain: `One awkward moment does not mean you should step back. When someone is visibly struggling, a second try is usually worth it, and it is rarely too late to say "I'm here."`,
-      better: `Go after her and offer to sit somewhere quiet together.` }
+  s1b: { text: `Maya is moving down the hallway alone, one hand trailing along the wall. You can still go after her[cite: 5].`, choices: [
+    { label: `Catch up and say: "Sorry, that wasn't helpful. I'm here if you want me."[cite: 5]`, good: true, trust: 10, badge: "Look", repair: true, next: "s2",
+      reaction: `Maya slows down. "Okay," she says quietly. "Somewhere quieter, maybe."[cite: 5]`,
+      explain: `Owning a misstep and trying again rebuilds trust faster than pretending it did not happen. You do not have to be perfect. You came back, and that is what matters. You earned a repair bonus[cite: 5].` },
+    { label: `Let her go[cite: 5].`, good: false, trust: -15, next: "end_missed",
+      reaction: `You head to class. Maya is on her own for the rest of the period[cite: 5].`,
+      explain: `One awkward moment does not mean you should step back. When someone is visibly struggling, a second try is usually worth it, and it is rarely too late to say "I'm here."[cite: 5]`,
+      better: `Go after her and offer to sit somewhere quiet together[cite: 5].` }
   ]},
-  s2: { text: `In the empty stairwell, Maya sits on the bottom step. She is still breathing fast and gripping her backpack strap.`, choices: [
-    { label: `Sit beside her and say: "I'm here. You don't have to talk. Want to breathe slowly with me?"`, good: true, trust: 15, badge: "Listen", next: "s3",
-      reaction: `You breathe in for four counts and out for six. Maya copies you. After a few rounds her shoulders drop a little.`,
-      explain: `You gave her presence without pressure to explain, which is the heart of Listen. Slow breathing is a common way PFA guides help someone's body settle, and doing it together keeps her from feeling singled out.` },
-    { label: `Ask: "What's wrong? Did something happen? Why does this keep happening?"`, good: false, trust: -10, next: "s2",
-      reaction: `Maya's breathing quickens again. "I don't know," she says, covering her face.`,
-      explain: `A rush of questions can feel like pressure to explain something she may not understand herself yet. PFA guidance advises against pushing people to tell their story. Let her talk when she is ready.`,
-      better: `Offer presence first: "I'm here. We can just sit."` },
-    { label: `Tell her that everything is fine and there is nothing to worry about.`, good: false, trust: -10, next: "s2",
-      reaction: `Maya's shoulders tense. "It doesn't feel fine," she says.`,
-      explain: `Quick reassurance can sound like you are brushing off what she feels, and it may not even be true. Acknowledging the feeling works better than arguing with it.`,
-      better: `"That looks really hard. I'm not going anywhere."` }
+  s2: { text: `In the empty stairwell, Maya sits on the bottom step. She is still breathing fast and gripping her backpack strap[cite: 5].`, choices: [
+    { label: `Sit beside her and say: "I'm here. You don't have to talk. Want to breathe slowly with me?"[cite: 5]`, good: true, trust: 15, badge: "Listen", next: "s3",
+      reaction: `You breathe in for four counts and out for six. Maya copies you. After a few rounds her shoulders drop a little[cite: 5].`,
+      explain: `You gave her presence without pressure to explain, which is the heart of Listen. Slow breathing is a common way PFA guides help someone's body settle, and doing it together keeps her from feeling singled out[cite: 5].` },
+    { label: `Ask: "What's wrong? Did something happen? Why does this keep happening?"[cite: 5]`, good: false, trust: -10, next: "s2",
+      reaction: `Maya's breathing quickens again. "I don't know," she says, covering her face[cite: 5].`,
+      explain: `A rush of questions can feel like pressure to explain something she may not understand herself yet. PFA guidance advises against pushing people to tell their story. Let her talk when she is ready[cite: 5].`,
+      better: `Offer presence first: "I'm here. We can just sit."[cite: 5]` },
+    { label: `Tell her that everything is fine and there is nothing to worry about[cite: 5].`, good: false, trust: -10, next: "s2",
+      reaction: `Maya's shoulders tense. "It doesn't feel fine," she says[cite: 5].`,
+      explain: `Quick reassurance can sound like you are brushing off what she feels, and it may not even be true. Acknowledging the feeling works better than arguing with it[cite: 5].`,
+      better: `"That looks really hard. I'm not going anywhere."[cite: 5]` }
   ]},
-  s3: { text: `After a few minutes, Maya's breathing slows. "I think it was a panic attack," she says. "It has been happening more lately." She looks embarrassed.`, choices: [
-    { label: `Say: "Thank you for telling me. That sounds really scary. I'm glad you told me."`, good: true, trust: 10, badge: "Listen", next: "s4",
-      reaction: `Maya lets out a shaky laugh and wipes her eyes. "I thought you'd think I was being dramatic."`,
-      explain: `You acknowledged the feeling and thanked her for trusting you, which tells her it is safe to be honest. You did not diagnose, analyze, or give advice yet, which is right at this stage. She spoke up first and you followed her lead.` },
-    { label: `Say: "Honestly, I think you're overreacting."`, good: false, trust: -15, next: "s3",
-      reaction: `Maya goes quiet. "Yeah. Never mind," she says.`,
-      explain: `Telling someone what they should or should not feel closes the door on the conversation. She already feels embarrassed, and judging that makes people stop talking, which makes them less likely to ask for help later.`,
-      better: `"That sounds really scary. Thanks for telling me."` },
-    { label: `Launch into a long story about the time you panicked at a concert.`, good: false, trust: -5, next: "s3",
-      reaction: `Maya nods politely, but her eyes drift to the floor. The conversation is about you now.`,
-      explain: `A short "that has happened to me too" can help someone feel less alone, but a long story moves the focus onto you. Listen means keeping the attention on her.`,
-      better: `Keep it brief or skip it, then ask: "What's that like for you?"` }
+  s3: { text: `After a few minutes, Maya's breathing slows. "I think it was a panic attack," she says. "It has been happening more lately." She looks embarrassed[cite: 5].`, choices: [
+    { label: `Say: "Thank you for telling me. That sounds really scary. I'm glad you told me."[cite: 5]`, good: true, trust: 10, badge: "Listen", next: "s4",
+      reaction: `Maya lets out a shaky laugh and wipes her eyes. "I thought you'd think I was being dramatic."[cite: 5]`,
+      explain: `You acknowledged the feeling and thanked her for trusting you, which tells her it is safe to be honest. You did not diagnose, analyze, or give advice yet, which is right at this stage. She spoke up first and you followed her lead[cite: 5].` },
+    { label: `Say: "Honestly, I think you're overreacting."[cite: 5]`, good: false, trust: -15, next: "s3",
+      reaction: `Maya goes quiet. "Yeah. Never mind," she says[cite: 5].`,
+      explain: `Telling someone what they should or should not feel closes the door on the conversation. She already feels embarrassed, and judging that makes people stop talking, which makes them less likely to ask for help later[cite: 5].`,
+      better: `"That sounds really scary. Thanks for telling me."[cite: 5]` },
+    { label: `Launch into a long story about the time you panicked at a concert[cite: 5].`, good: false, trust: -5, next: "s3",
+      reaction: `Maya nods politely, but her eyes drift to the floor. The conversation is about you now[cite: 5].`,
+      explain: `A short "that has happened to me too" can help someone feel less alone, but a long story moves the focus onto you. Listen means keeping the attention on her[cite: 5].`,
+      better: `Keep it brief or skip it, then ask: "What's that like for you?"[cite: 5]` }
   ]},
-  s4: { text: `Maya says she feels a bit better. The bell for the next class is about to ring.`, choices: [
-    { label: `Ask: "Would it help to talk to the school counselor? I can come with you."`, good: true, trust: 10, badge: "Link", next: "end_good",
-      reaction: `Maya thinks about it, then nods. "Okay. Maybe tomorrow morning?" You agree to meet her outside the counseling office.`,
-      explain: `This is Link: helping her reach someone with the right training while she keeps control of the decision. Offering to go with her makes the step smaller and less scary. Repeated panic attacks are worth talking through with a counselor or doctor.` },
-    { label: `Say: "You have to tell your parents today, or I will."`, good: false, trust: -15, next: "s4",
-      reaction: `Maya stiffens. "I just told you that. I didn't ask you to take over," she says.`,
-      explain: `Pressure and ultimatums can break the trust you just built. Unless someone is in immediate danger, let them have a say in who gets told and when. If anyone is ever in danger, getting an adult or calling 911 or 988 comes first.`,
-      better: `"Would it help to talk to a counselor? I can come with you."` },
-    { label: `Say: "Glad you're better. See you in class!" and head out.`, good: false, trust: 0, next: "end_ok",
-      reaction: `Maya smiles weakly and nods. You both head to class, and the moment passes without a plan.`,
-      explain: `Staying with her mattered, but Link was the missing step. If the panic attacks keep happening, she may need more support than one friend can give. A quick offer to connect her with someone is easy to add.`,
-      better: `"Would it help to talk to the school counselor? I can come with you."` }
+  s4: { text: `Maya says she feels a bit better. The bell for the next class is about to ring[cite: 5].`, choices: [
+    { label: `Ask: "Would it help to talk to the school counselor? I can come with you."[cite: 5]`, good: true, trust: 10, badge: "Link", next: "end_good",
+      reaction: `Maya thinks about it, then nods. "Okay. Maybe tomorrow morning?" You agree to meet her outside the counseling office[cite: 5].`,
+      explain: `This is Link: helping her reach someone with the right training while she keeps control of the decision. Offering to go with her makes the step smaller and less scary. Repeated panic attacks are worth talking through with a counselor or doctor[cite: 5].` },
+    { label: `Say: "You have to tell your parents today, or I will."[cite: 5]`, good: false, trust: -15, next: "s4",
+      reaction: `Maya stiffens. "I just told you that. I didn't ask you to take over," she says[cite: 5].`,
+      explain: `Pressure and ultimatums can break the trust you just built. Unless someone is in immediate danger, let them have a say in who gets told and when. If anyone is ever in danger, getting an adult or calling 911 or 988 comes first[cite: 5].`,
+      better: `"Would it help to talk to a counselor? I can come with you."[cite: 5]` },
+    { label: `Say: "Glad you're better. See you in class!" and head out[cite: 5].`, good: false, trust: 0, next: "end_ok",
+      reaction: `Maya smiles weakly and nods. You both head to class, and the moment passes without a plan[cite: 5].`,
+      explain: `Staying with her mattered, but Link was the missing step. If the panic attacks keep happening, she may need more support than one friend can give. A quick offer to connect her with someone is easy to add[cite: 5].`,
+      better: `"Would it help to talk to the school counselor? I can come with you."[cite: 5]` }
   ]}
 };
 const ENDINGS = {
  "end_good": {
-  "text": "Maya is not fixed in five minutes, and that is okay. You noticed she was struggling, stayed with her without pressure, and helped her connect with someone who can support her. That is what psychological first aid looks like.",
+  "text": "Maya is not fixed in five minutes, and that is okay. You noticed she was struggling, stayed with her without pressure, and helped her connect with someone who can support her. That is what psychological first aid looks like[cite: 5].",
   "ranks": [
    [
     80,
@@ -268,7 +272,7 @@ const ENDINGS = {
   ]
  },
  "end_ok": {
-  "text": "You noticed Maya, stayed with her, and helped her through the worst of it. That matters a lot. The missing piece was Link: with a small offer to connect her to a counselor, you could have helped her find support beyond this moment.",
+  "text": "You noticed Maya, stayed with her, and helped her through the worst of it. That matters a lot. The missing piece was Link: with a small offer to connect her to a counselor, you could have helped her find support beyond this moment[cite: 5].",
   "ranks": [
    [
     0,
@@ -278,7 +282,7 @@ const ENDINGS = {
   ]
  },
  "end_missed": {
-  "text": "Maya got through the period on her own, and it was harder than it needed to be. The moment is not lost. You can still check in with her later, and now you know what to try.",
+  "text": "Maya got through the period on her own, and it was harder than it needed to be. The moment is not lost. You can still check in with her later, and now you know what to try[cite: 5].",
   "ranks": [
    [
     0,
@@ -428,12 +432,12 @@ function applyChoice(c) {
 }
 function showIntro() {
   const rules = el("ul", "", "rules");
-  [`Each choice changes ${META.name}'s trust. Helpful choices raise it and unhelpful ones lower it.`,
-   META.scoring ? "Earn the Look, Listen, and Link badges, and build a streak for bonus points." : "Earn the Look, Listen, and Link badges as you help.",
-   "After every choice you get a plain explanation of what went well or what went wrong.",
-   "Wrong turns are part of practice. You can try again."].forEach(t => rules.appendChild(el("li", t)));
+  [`Each choice changes ${META.name}'s trust. Helpful choices raise it and unhelpful ones lower it[cite: 5].`,
+   META.scoring ? "Earn the Look, Listen, and Link badges, and build a streak for bonus points[cite: 5]." : "Earn the Look, Listen, and Link badges as you help[cite: 5].",
+   "After every choice you get a plain explanation of what went well or what went wrong[cite: 5].",
+   "Wrong turns are part of practice. You can try again[cite: 5]."].forEach(t => rules.appendChild(el("li", t)));
   const warn = el("div", "", "warn"), p1 = el("p");
-  p1.append(el("b", "Your progress is not saved. "), document.createTextNode(`If you close or reload this tab, your ${META.scoring ? "score and choices are" : "choices are"} lost and you will start over.`));
+  p1.append(el("b", "Your progress is not saved. "), document.createTextNode(`If you close or reload this tab, your ${META.scoring ? "score and choices are" : "choices are"} lost and you will start over[cite: 5].`));
   warn.append(p1, el("p", META.safety));
   const go = el("button", "Start the Story", "start"); go.onclick = cinematic;
   const nodes = [el("small", "Before You Start"), P(META.intro)];
@@ -502,3 +506,4 @@ b.onclick=()=>{on=!on;b.classList.toggle("off",!on);if(on){go=false;start()}else
 </script>
 </body>
 </html>
+```[cite: 5]
