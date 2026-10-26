@@ -107,9 +107,12 @@ body.leaving{opacity:0;transform:translateY(-8px);transition:opacity .28s ease,t
 .cinebox{position:fixed;inset:0;display:grid;place-items:center;padding:2rem;z-index:40;pointer-events:none}
 .cine-key{font-family:Gloock,Georgia,serif;font-size:clamp(2.2rem,7vw,4.8rem);line-height:1.15;text-align:center;max-width:16ch;margin:0;opacity:0;filter:blur(12px);transform:scale(.94);transition:opacity 1s ease,filter 1s ease,transform 1.2s var(--ease)}
 .cinebox.show .cine-key{opacity:1;filter:blur(0);transform:none}
-.cine-key b{font-weight:700;color:transparent;-webkit-text-stroke:1.6px var(--main);transition:color 1.4s ease,-webkit-text-stroke-color 1.4s ease}
-.cinebox.grave .cine-key b{color:#fff;-webkit-text-stroke-color:#000;animation:outl 1.4s ease}
-@keyframes outl{0%{-webkit-text-stroke-width:1px}45%{-webkit-text-stroke-width:3.4px}100%{-webkit-text-stroke-width:1.6px}}
+.cine-key b {
+  font-weight: 700;
+  color: transparent;
+  -webkit-text-stroke: 1.6px var(--main);
+}
+
 .cinebox.s-scatter .cine-key{opacity:1;filter:none;transform:none}
 .cinebox.s-scatter .kw{display:inline-block;opacity:0;transform:translate(var(--dx),var(--dy)) rotate(var(--rot));transition:opacity .6s ease var(--d),transform .9s var(--ease) var(--d)}
 .cinebox.s-scatter.show .kw{opacity:1;transform:none}
