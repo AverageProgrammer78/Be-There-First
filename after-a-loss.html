@@ -93,7 +93,15 @@ body.leaving{opacity:0;transform:translateY(-8px);transition:opacity .28s ease,t
 .stage .final>div{animation:popin .5s var(--ease) backwards}
 .stage .log li{animation:slidel .45s var(--ease) backwards}
 .lw{display:inline-block;transition-property:opacity,filter,transform;transition-duration:var(--dur,.8s);transition-timing-function:ease;transition-delay:var(--d,0s)}
-.keep b{font-weight:700;color:var(--main)}
+
+/* 1. Static page text before starting (Normal solid text, matching surrounding theme color) */
+.keep b {
+  font-weight: 700;
+  color: inherit;
+  -webkit-text-fill-color: initial;
+  -webkit-text-stroke: 0;
+}
+
 .dis{transition-property:opacity,filter,transform;transition-duration:var(--dur2,.9s);transition-timing-function:ease;transition-delay:var(--d,0s)}
 .s-scatter{--dur:.7s;--dur2:.7s}.s-fade{--dur:1.4s;--dur2:1.6s}.s-sink{--dur:1.2s;--dur2:1.4s}.s-cut{--dur:.15s;--dur2:.25s}
 .cine .dis{pointer-events:none}
@@ -104,27 +112,49 @@ body.leaving{opacity:0;transform:translateY(-8px);transition:opacity .28s ease,t
 .cine.s-sink .lw:not(.keep){opacity:0;transform:translateY(34px)}
 .cine.s-sink .dis{opacity:0;transform:translateY(24px)}
 .hold .hud,.hold .stage *{animation-play-state:paused!important}
+
 .cinebox{position:fixed;inset:0;display:grid;place-items:center;padding:2rem;z-index:40;pointer-events:none}
-.cine-key{font-family:Gloock,Georgia,serif;font-size:clamp(2.2rem,7vw,4.8rem);line-height:1.15;text-align:center;max-width:16ch;margin:0;opacity:0;filter:blur(12px);transform:scale(.94);transition:opacity 1s ease,filter 1s ease,transform 1.2s var(--ease)}
+
+/* 2. Intro overlay key text */
+.cine-key{
+  font-family:Gloock,Georgia,serif;
+  font-size:clamp(2.2rem,7vw,4.8rem);
+  line-height:1.15;
+  text-align:center;
+  max-width:16ch;
+  margin:0;
+  opacity:0;
+  filter:blur(12px);
+  transform:scale(.94);
+  transition:opacity 1s ease,filter 1s ease,transform 1.2s var(--ease);
+}
 .cinebox.show .cine-key{opacity:1;filter:blur(0);transform:none}
 
-.cine-key b{
+/* 3. The target word inside the cinematic ("perfect") */
+.cinebox .kw-bold {
+  display: inline-block;
   position: relative;
   font-weight: 700;
-  color: transparent;
-  -webkit-text-stroke: 1.6px var(--main);
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  -webkit-text-stroke: 1.8px var(--main) !important;
 }
-.cine-key b::after {
+
+/* 4. Expanding green underline animation */
+.cinebox .kw-bold::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -4px;
-  width: 0;
-  height: 3px;
+  bottom: 2px;
+  width: 0%;
+  height: 4px;
   background-color: var(--main);
-  transition: width 0.8s var(--ease) 0.4s;
+  border-radius: 2px;
+  transition: width 0.9s cubic-bezier(.2, .8, .2, 1) 0.5s;
 }
-.cinebox.show .cine-key b::after {
+
+/* Expand underline when overlay shows */
+.cinebox.show .kw-bold::after {
   width: 100%;
 }
 
@@ -143,13 +173,13 @@ body.leaving{opacity:0;transform:translateY(-8px);transition:opacity .28s ease,t
 </style>
 </head>
 <body>
-<div class="crisis">In danger or thinking about suicide? Call or text 988 (US), or call 911[cite: 7].</div>
+<div class="crisis">In danger or thinking about suicide? Call or text 988 (US), or call 911.</div>
 
 <main class="wrap">
   <a class="back" href="index.html">&larr; Back to Home</a>
   <header class="top">
     <h1>After a Loss</h1>
-    <p class="lede">Your friend Priya is back at school after losing her grandfather. You do not need perfect words to help[cite: 7].</p>
+    <p class="lede">Your friend Priya is back at school after losing her grandfather. You do not need perfect words to help.</p>
   </header>
 
   <section class="hud" id="hud" hidden aria-label="Your progress">
@@ -161,10 +191,10 @@ body.leaving{opacity:0;transform:translateY(-8px);transition:opacity .28s ease,t
   </section>
 
   <section class="stage" id="stage" aria-live="polite"></section>
-  <p class="note" id="note" hidden>Your progress is not saved. Closing or reloading this tab resets the story[cite: 7].</p>
+  <p class="note" id="note" hidden>Your progress is not saved. Closing or reloading this tab resets the story.</p>
 </main>
 
-<footer><div class="wrap">Explanations are written for learning and based on the Look, Listen, Link approach in WHO, <i>Psychological First Aid: Guide for Field Workers</i> (2011), and on NCTSN and National Center for PTSD, <i>Psychological First Aid: Field Operations Guide</i> (2006). This story is practice, not therapy or medical advice[cite: 7].</div></footer>
+<footer><div class="wrap">Explanations are written for learning and based on the Look, Listen, Link approach in WHO, <i>Psychological First Aid: Guide for Field Workers</i> (2011), and on NCTSN and National Center for PTSD, <i>Psychological First Aid: Field Operations Guide</i> (2006). This story is practice, not therapy or medical advice.</div></footer>
 
 <script>
 const el = (tag, text, cls) => { const e = document.createElement(tag); if (text) e.textContent = text; if (cls) e.className = cls; return e; };
@@ -312,8 +342,10 @@ function prepLede() {
     const add = (str, keep) => str.split(/(\s+)/).forEach(tok => {
       if (!tok) return;
       if (/^\s+$/.test(tok)) { ln.appendChild(document.createTextNode(tok)); return; }
-      const w = el("span", "", "lw" + (keep ? " keep" : ""));
-      if (keep && tok.replace(/[^A-Za-z]/g, "") === META.bold) w.appendChild(el("b", tok)); else w.textContent = tok;
+      const cleanTok = tok.replace(/[^A-Za-z]/g, "");
+      const isBold = keep || (cleanTok.toLowerCase() === META.bold.toLowerCase());
+      const w = el("span", "", "lw" + (isBold ? " keep" : ""));
+      if (isBold) w.appendChild(el("b", tok)); else w.textContent = tok;
       ln.appendChild(w);
     });
     const k = s.indexOf(META.key);
@@ -351,7 +383,9 @@ async function cinematic() {
   });
   const over = el("div", "", "cinebox s-" + st), kp = el("p", "", "cine-key");
   META.key.split(" ").forEach((w, i, a) => {
-    const s = el(w === META.bold ? "b" : "span", w, "kw");
+    const cleanWord = w.replace(/[^A-Za-z]/g, "");
+    const isTarget = cleanWord.toLowerCase() === META.bold.toLowerCase();
+    const s = el(isTarget ? "b" : "span", w, "kw" + (isTarget ? " kw-bold" : ""));
     sp(s, "--d", rnd(0, .3).toFixed(2) + "s"); sp(s, "--dx", rnd(-120, 120).toFixed(0) + "px"); sp(s, "--dy", rnd(-90, 90).toFixed(0) + "px"); sp(s, "--rot", rnd(-30, 30).toFixed(0) + "deg");
     kp.appendChild(s); if (i < a.length - 1) kp.appendChild(document.createTextNode(" "));
   });
