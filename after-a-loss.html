@@ -11,20 +11,24 @@
 :root{--bg:#EEF3F1;--panel:#F9FBFA;--ink:#14201C;--muted:#4A5C56;--main:#1F5C4A;--line:#B9C9C3;--crisis:#C8401B;--crisisbg:#FBE9E2;--ease:cubic-bezier(.2,.8,.2,1)}
 @media(prefers-color-scheme:dark){:root{--bg:#0E1714;--panel:#15231E;--ink:#E7F0EC;--muted:#9DB3AB;--main:#6FC7A5;--line:#2B403A;--crisis:#FF9B76;--crisisbg:#2B1A13}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 1.05rem/1.6 "Schibsted Grotesk",system-ui,sans-serif}
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.05rem/1.6 "Schibsted Grotesk",system-ui,sans-serif;display:flex;flex-direction:column}
 h1{font-family:Gloock,Georgia,serif;font-weight:400;line-height:1.05;margin:0;font-size:clamp(2.8rem,9vw,5rem);letter-spacing:-.02em}
-.wrap{max-width:760px;margin:0 auto;padding:0 1.25rem}
-.crisis{background:var(--crisisbg);color:var(--crisis);font-weight:600;text-align:center;padding:.6rem 1rem;font-size:.95rem}
+.wrap{max-width:760px;width:100%;margin:0 auto;padding:0 1.25rem;flex:1;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.crisis{background:var(--crisisbg);color:var(--crisis);font-weight:600;text-align:center;padding:.6rem 1rem;font-size:.95rem;flex-shrink:0}
 a{color:var(--ink)}
 a:focus-visible,button:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
 button{font:inherit;cursor:pointer}
 @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 @keyframes pop{0%{transform:scale(.7)}60%{transform:scale(1.1)}100%{transform:scale(1)}}
 @keyframes float{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-26px)}}
-.back{display:inline-block;margin:1.5rem 0 1rem;color:var(--muted);text-decoration:none;transition:color .2s,transform .3s var(--ease)}
+.back{display:inline-block;margin:1rem 0 .5rem;color:var(--muted);text-decoration:none;transition:color .2s,transform .3s var(--ease)}
 .back:hover{color:var(--ink);transform:translateX(-4px)}
 
-.lede{font-size:1.2rem;max-width:36ch;margin:1.25rem 0 1.75rem}
+.lede{font-size:1.2rem;max-width:36ch;margin:1rem 0 1.5rem}
 
 /* HUD */
 .hud{display:grid;grid-template-columns:2fr 1fr 1fr;gap:1.25rem;background:var(--panel);border:1.5px solid var(--ink);border-radius:6px;padding:1.1rem 1.25rem;animation:dropin .7s var(--ease) backwards}
@@ -42,7 +46,7 @@ button{font:inherit;cursor:pointer}
 .gain{position:absolute;left:0;top:-.3rem;color:var(--main);font-weight:600;pointer-events:none;animation:float 1s forwards}
 
 /* stage */
-.stage{margin-top:1.25rem;background:var(--panel);border:1.5px solid var(--ink);border-radius:6px;padding:1.6rem;min-height:16rem}
+.stage{margin-top:1rem;margin-bottom:1rem;background:var(--panel);border:1.5px solid var(--ink);border-radius:6px;padding:1.6rem;max-height:60vh;overflow-y:auto}
 
 .stage small{display:block;color:var(--muted);margin:1.1rem 0 .15rem}
 .stage>small:first-child{margin-top:0}
@@ -65,8 +69,8 @@ button{font:inherit;cursor:pointer}
 .final small{margin:0!important}
 .log{margin:.25rem 0 1rem;padding-left:1.3rem}
 .log li{margin-bottom:.3rem}
-.note{color:var(--muted);font-size:.92rem;margin:1rem 0 0}
-footer{border-top:1px solid var(--line);margin-top:3rem;padding:2rem 0 4rem;color:var(--muted);font-size:.9rem}
+.note{color:var(--muted);font-size:.92rem;margin:0 0 1rem}
+footer{border-top:1px solid var(--line);padding:1rem 0 1.5rem;color:var(--muted);font-size:.9rem;flex-shrink:0}
 body{animation:fadein .5s backwards}
 body.leaving{opacity:0;transform:translateY(-8px);transition:opacity .28s ease,transform .28s ease}
 @keyframes fadein{from{opacity:0}}
@@ -94,7 +98,7 @@ body.leaving{opacity:0;transform:translateY(-8px);transition:opacity .28s ease,t
 .stage .log li{animation:slidel .45s var(--ease) backwards}
 .lw{display:inline-block;transition-property:opacity,filter,transform;transition-duration:var(--dur,.8s);transition-timing-function:ease;transition-delay:var(--d,0s)}
 
-/* 1. Static page text before starting (Normal solid text, matching surrounding theme color) */
+/* Static page text before starting (Normal solid text) */
 .keep b {
   font-weight: 700;
   color: inherit;
@@ -112,25 +116,11 @@ body.leaving{opacity:0;transform:translateY(-8px);transition:opacity .28s ease,t
 .cine.s-sink .lw:not(.keep){opacity:0;transform:translateY(34px)}
 .cine.s-sink .dis{opacity:0;transform:translateY(24px)}
 .hold .hud,.hold .stage *{animation-play-state:paused!important}
-
 .cinebox{position:fixed;inset:0;display:grid;place-items:center;padding:2rem;z-index:40;pointer-events:none}
-
-/* 2. Intro overlay key text */
-.cine-key{
-  font-family:Gloock,Georgia,serif;
-  font-size:clamp(2.2rem,7vw,4.8rem);
-  line-height:1.15;
-  text-align:center;
-  max-width:16ch;
-  margin:0;
-  opacity:0;
-  filter:blur(12px);
-  transform:scale(.94);
-  transition:opacity 1s ease,filter 1s ease,transform 1.2s var(--ease);
-}
+.cine-key{font-family:Gloock,Georgia,serif;font-size:clamp(2.2rem,7vw,4.8rem);line-height:1.15;text-align:center;max-width:16ch;margin:0;opacity:0;filter:blur(12px);transform:scale(.94);transition:opacity 1s ease,filter 1s ease,transform 1.2s var(--ease)}
 .cinebox.show .cine-key{opacity:1;filter:blur(0);transform:none}
 
-/* 3. The target word inside the cinematic ("perfect") */
+/* The target word inside the cinematic */
 .cinebox .kw-bold {
   display: inline-block;
   position: relative;
@@ -140,7 +130,7 @@ body.leaving{opacity:0;transform:translateY(-8px);transition:opacity .28s ease,t
   -webkit-text-stroke: 1.8px var(--main) !important;
 }
 
-/* 4. Expanding green underline animation */
+/* Expanding green underline animation */
 .cinebox .kw-bold::after {
   content: "";
   position: absolute;
@@ -153,7 +143,6 @@ body.leaving{opacity:0;transform:translateY(-8px);transition:opacity .28s ease,t
   transition: width 0.9s cubic-bezier(.2, .8, .2, 1) 0.5s;
 }
 
-/* Expand underline when overlay shows */
 .cinebox.show .kw-bold::after {
   width: 100%;
 }
@@ -173,13 +162,13 @@ body.leaving{opacity:0;transform:translateY(-8px);transition:opacity .28s ease,t
 </style>
 </head>
 <body>
-<div class="crisis">In danger or thinking about suicide? Call or text 988 (US), or call 911.</div>
+<div class="crisis">In danger or thinking about suicide? Call or text 988 (US), or call 911[cite: 4].</div>
 
 <main class="wrap">
   <a class="back" href="index.html">&larr; Back to Home</a>
   <header class="top">
     <h1>After a Loss</h1>
-    <p class="lede">Your friend Priya is back at school after losing her grandfather. You do not need perfect words to help.</p>
+    <p class="lede">Your friend Priya is back at school after losing her grandfather. You do not need perfect words to help[cite: 4].</p>
   </header>
 
   <section class="hud" id="hud" hidden aria-label="Your progress">
@@ -191,10 +180,10 @@ body.leaving{opacity:0;transform:translateY(-8px);transition:opacity .28s ease,t
   </section>
 
   <section class="stage" id="stage" aria-live="polite"></section>
-  <p class="note" id="note" hidden>Your progress is not saved. Closing or reloading this tab resets the story.</p>
+  <p class="note" id="note" hidden>Your progress is not saved. Closing or reloading this tab resets the story[cite: 4].</p>
 </main>
 
-<footer><div class="wrap">Explanations are written for learning and based on the Look, Listen, Link approach in WHO, <i>Psychological First Aid: Guide for Field Workers</i> (2011), and on NCTSN and National Center for PTSD, <i>Psychological First Aid: Field Operations Guide</i> (2006). This story is practice, not therapy or medical advice.</div></footer>
+<footer><div class="wrap">Explanations are written for learning and based on the Look, Listen, Link approach in WHO, <i>Psychological First Aid: Guide for Field Workers</i> (2011), and on NCTSN and National Center for PTSD, <i>Psychological First Aid: Field Operations Guide</i> (2006). This story is practice, not therapy or medical advice[cite: 4].</div></footer>
 
 <script>
 const el = (tag, text, cls) => { const e = document.createElement(tag); if (text) e.textContent = text; if (cls) e.className = cls; return e; };
@@ -204,67 +193,67 @@ const $ = id => document.getElementById(id);
 /* ---------- Story data ---------- */
 const STEP = { l1: [1, "Look"], l1b: [1, "Look"], l2: [2, "Listen"], l3: [3, "Listen"], l4: [4, "Link"] };
 const SCENES = {
-  l1: { text: `Priya is back at school after missing a week. Her grandfather, who helped raise her, died last week. Other students glance at her and look away. She is standing alone by the water fountain.`, choices: [
-    { label: `Avoid her because you do not know what to say.`, good: false, trust: -10, next: "l1b",
-      reaction: `You take the long way to class. Priya stands by the fountain a little longer, then walks in alone.`,
-      explain: `Not knowing what to say is the most common reason people avoid someone who is grieving. But silence can feel like being forgotten. You do not need perfect words. A short, honest sentence is enough.`,
-      better: `"I heard about your grandfather. I'm so sorry. I'm glad you're here."` },
-    { label: `Walk over and say: "I heard about your grandfather. I'm so sorry. I'm glad you're here."`, good: true, trust: 15, badge: "Look", next: "l2",
-      reaction: `Priya's eyes shine. "Thank you," she says. "Everyone is pretending nothing happened."`,
-      explain: `You acknowledged the loss directly and kept it short. That tells her she does not have to hide what she is going through. You also did not ask her to explain or to act okay.` },
-    { label: `Say cheerfully: "Hey! Welcome back. Did you miss anything?"`, good: false, trust: -10, next: "l1b",
-      reaction: `Priya forces a smile. "Not really," she says, and her eyes drop.`,
-      explain: `Acting like nothing happened can feel like the loss is being erased. You were trying to keep things light, but acknowledging what happened comes first.`,
-      better: `"I heard about your grandfather. I'm so sorry. I'm glad you're here."` }
+  l1: { text: `Priya is back at school after missing a week. Her grandfather, who helped raise her, died last week. Other students glance at her and look away. She is standing alone by the water fountain[cite: 4].`, choices: [
+    { label: `Avoid her because you do not know what to say[cite: 4].`, good: false, trust: -10, next: "l1b",
+      reaction: `You take the long way to class. Priya stands by the fountain a little longer, then walks in alone[cite: 4].`,
+      explain: `Not knowing what to say is the most common reason people avoid someone who is grieving. But silence can feel like being forgotten. You do not need perfect words. A short, honest sentence is enough[cite: 4].`,
+      better: `"I heard about your grandfather. I'm so sorry. I'm glad you're here."[cite: 4]` },
+    { label: `Walk over and say: "I heard about your grandfather. I'm so sorry. I'm glad you're here."[cite: 4]`, good: true, trust: 15, badge: "Look", next: "l2",
+      reaction: `Priya's eyes shine. "Thank you," she says. "Everyone is pretending nothing happened."[cite: 4]`,
+      explain: `You acknowledged the loss directly and kept it short. That tells her she does not have to hide what she is going through. You also did not ask her to explain or to act okay[cite: 4].` },
+    { label: `Say cheerfully: "Hey! Welcome back. Did you miss anything?"[cite: 4]`, good: false, trust: -10, next: "l1b",
+      reaction: `Priya forces a smile. "Not really," she says, and her eyes drop[cite: 4].`,
+      explain: `Acting like nothing happened can feel like the loss is being erased. You were trying to keep things light, but acknowledging what happened comes first[cite: 4].`,
+      better: `"I heard about your grandfather. I'm so sorry. I'm glad you're here."[cite: 4]` }
   ]},
-  l1b: { text: `Priya is walking to class alone. You can still reach out.`, choices: [
-    { label: `Catch up and say: "I should have said something earlier. I'm so sorry about your grandfather."`, good: true, trust: 10, badge: "Look", repair: true, next: "l2",
-      reaction: `Priya slows down. "Thanks," she says. "I wasn't sure anyone knew what to say."`,
-      explain: `Admitting you wish you had said something sooner is honest and kind. People who are grieving rarely hold a late acknowledgment against you. Coming back counts for a lot.` },
-    { label: `Leave it. She probably wants to be alone.`, good: false, trust: -10, next: "end_missed",
-      reaction: `You head to class. Priya spends the morning on her own.`,
-      explain: `Grieving people often want space, but they rarely want to be forgotten. A brief acknowledgment, followed by letting them choose, respects both needs.`,
-      better: `"I'm so sorry about your grandfather. I'm here if you want company."` }
+  l1b: { text: `Priya is walking to class alone. You can still reach out[cite: 4].`, choices: [
+    { label: `Catch up and say: "I should have said something earlier. I'm so sorry about your grandfather."[cite: 4]`, good: true, trust: 10, badge: "Look", repair: true, next: "l2",
+      reaction: `Priya slows down. "Thanks," she says. "I wasn't sure anyone knew what to say."[cite: 4]`,
+      explain: `Admitting you wish you had said something sooner is honest and kind. People who are grieving rarely hold a late acknowledgment against you. Coming back counts for a lot[cite: 4].` },
+    { label: `Leave it. She probably wants to be alone[cite: 4].`, good: false, trust: -10, next: "end_missed",
+      reaction: `You head to class. Priya spends the morning on her own[cite: 4].`,
+      explain: `Grieving people often want space, but they rarely want to be forgotten. A brief acknowledgment, followed by letting them choose, respects both needs[cite: 4].`,
+      better: `"I'm so sorry about your grandfather. I'm here if you want company."[cite: 4]` }
   ]},
-  l2: { text: `Priya's eyes fill with tears. "He used to wait for me after school every day," she says.`, choices: [
-    { label: `Say: "That sounds like it meant so much. I'm here. Tell me about him if you want to."`, good: true, trust: 15, badge: "Listen", next: "l3",
-      reaction: `Priya smiles through her tears. "He always had the radio on and snacks in the car," she says.`,
-      explain: `You reflected what she shared and invited her to say more without pushing. Letting people talk about the person they lost is one of the most helpful things you can do.` },
-    { label: `Say: "He's in a better place now. At least he isn't suffering."`, good: false, trust: -15, next: "l2",
-      reaction: `Priya's jaw tightens. "I just want him here," she says.`,
-      explain: `Phrases like this are meant to comfort, but they rush past the pain and can clash with what the person believes. Grief does not need a silver lining to be allowed.`,
-      better: `"I'm so sorry. I can only imagine how much you miss him."` },
-    { label: `Say: "I know exactly how you feel. I lost someone last year."`, good: false, trust: -10, next: "l2",
-      reaction: `Priya nods, but she seems further away. The conversation is now about you.`,
-      explain: `Sharing a loss can sometimes help, but "I know exactly how you feel" claims too much, because every loss is different. Staying curious about her experience keeps the focus where she needs it.`,
-      better: `"I can't know exactly how it feels, but I'm here. What was he like?"` }
+  l2: { text: `Priya's eyes fill with tears. "He used to wait for me after school every day," she says[cite: 4].`, choices: [
+    { label: `Say: "That sounds like it meant so much. I'm here. Tell me about him if you want to."[cite: 4]`, good: true, trust: 15, badge: "Listen", next: "l3",
+      reaction: `Priya smiles through her tears. "He always had the radio on and snacks in the car," she says[cite: 4].`,
+      explain: `You reflected what she shared and invited her to say more without pushing. Letting people talk about the person they lost is one of the most helpful things you can do[cite: 4].` },
+    { label: `Say: "He's in a better place now. At least he isn't suffering."[cite: 4]`, good: false, trust: -15, next: "l2",
+      reaction: `Priya's jaw tightens. "I just want him here," she says[cite: 4].`,
+      explain: `Phrases like this are meant to comfort, but they rush past the pain and can clash with what the person believes. Grief does not need a silver lining to be allowed[cite: 4].`,
+      better: `"I'm so sorry. I can only imagine how much you miss him."[cite: 4]` },
+    { label: `Say: "I know exactly how you feel. I lost someone last year."[cite: 4]`, good: false, trust: -10, next: "l2",
+      reaction: `Priya nods, but she seems further away. The conversation is now about you[cite: 4].`,
+      explain: `Sharing a loss can sometimes help, but "I know exactly how you feel" claims too much, because every loss is different. Staying curious about her experience keeps the focus where she needs it[cite: 4].`,
+      better: `"I can't know exactly how it feels, but I'm here. What was he like?"[cite: 4]` }
   ]},
-  l3: { text: `Priya wipes her eyes. "Sorry, I didn't mean to cry at school," she says.`, choices: [
-    { label: `Say: "You don't have to apologize. Cry as much as you need to. There is no right way to do this."`, good: true, trust: 10, badge: "Listen", next: "l4",
-      reaction: `Priya lets out a shaky breath. "Okay," she says. "It's just so strange that everything keeps going."`,
-      explain: `You gave permission for the feeling instead of managing it. Many people in grief feel they must hold it together. Hearing "there is no right way" can take real pressure off.` },
-    { label: `Say: "Maybe we should go somewhere else. People are looking."`, good: false, trust: -10, next: "l3",
-      reaction: `Priya wipes her face fast. "Yeah. Sorry," she says, shrinking.`,
-      explain: `Moving to a quieter spot can be kind, but pointing out that people are watching adds embarrassment. Offer privacy as a choice, not as a way to hide her tears.`,
-      better: `"Do you want to step outside for a minute, or stay here? Either is fine."` }
+  l3: { text: `Priya wipes her eyes. "Sorry, I didn't mean to cry at school," she says[cite: 4].`, choices: [
+    { label: `Say: "You don't have to apologize. Cry as much as you need to. There is no right way to do this."[cite: 4]`, good: true, trust: 10, badge: "Listen", next: "l4",
+      reaction: `Priya lets out a shaky breath. "Okay," she says. "It's just so strange that everything keeps going."[cite: 4]`,
+      explain: `You gave permission for the feeling instead of managing it. Many people in grief feel they must hold it together. Hearing "there is no right way" can take real pressure off[cite: 4].` },
+    { label: `Say: "Maybe we should go somewhere else. People are looking."[cite: 4]`, good: false, trust: -10, next: "l3",
+      reaction: `Priya wipes her face fast. "Yeah. Sorry," she says, shrinking[cite: 4].`,
+      explain: `Moving to a quieter spot can be kind, but pointing out that people are watching adds embarrassment. Offer privacy as a choice, not as a way to hide her tears[cite: 4].`,
+      better: `"Do you want to step outside for a minute, or stay here? Either is fine."[cite: 4]` }
   ]},
-  l4: { text: `The bell rings. Priya says she does not know how she will get through the day.`, choices: [
-    { label: `Say: "We can take it one class at a time. Would it help to let the counselor know, so you have somewhere to go if it gets hard? I'll check in at lunch."`, good: true, trust: 10, badge: "Link", next: "end_good",
-      reaction: `Priya nods slowly. "That would help," she says. "Can you come with me at lunch?" You say yes.`,
-      explain: `Breaking the day into small pieces makes it manageable, and a counselor can offer support you cannot. Checking in at lunch shows you are staying involved. Grief has no schedule, so ongoing, small acts of care count.` },
-    { label: `Say: "You'll feel better soon. Just stay busy!"`, good: false, trust: -10, next: "l4",
-      reaction: `Priya gives a weak nod. "Sure," she says, and her voice goes flat.`,
-      explain: `Grief does not follow a timeline, and "soon" can sound like a deadline. Staying busy can help some people, but it should be their choice.`,
-      better: `"We can take it one class at a time. I'm here."` },
-    { label: `Say: "Okay, see you later!" and head to class.`, good: false, trust: 0, next: "end_ok",
-      reaction: `Priya watches you go. She walks to class alone, still unsure how to get through the day.`,
-      explain: `You were there for the hard part, and that matters. The missing step is Link: connecting her with the counselor and following up so she is not carrying the day alone.`,
-      better: `"Would it help to let the counselor know? I can come with you, and I'll check in at lunch."` }
+  l4: { text: `The bell rings. Priya says she does not know how she will get through the day[cite: 4].`, choices: [
+    { label: `Say: "We can take it one class at a time. Would it help to let the counselor know, so you have somewhere to go if it gets hard? I'll check in at lunch."[cite: 4]`, good: true, trust: 10, badge: "Link", next: "end_good",
+      reaction: `Priya nods slowly. "That would help," she says. "Can you come with me at lunch?" You say yes[cite: 4].`,
+      explain: `Breaking the day into small pieces makes it manageable, and a counselor can offer support you cannot. Checking in at lunch shows you are staying involved. Grief has no schedule, so ongoing, small acts of care count[cite: 4].` },
+    { label: `Say: "You'll feel better soon. Just stay busy!"[cite: 4]`, good: false, trust: -10, next: "l4",
+      reaction: `Priya gives a weak nod. "Sure," she says, and her voice goes flat[cite: 4].`,
+      explain: `Grief does not follow a timeline, and "soon" can sound like a deadline. Staying busy can help some people, but it should be their choice[cite: 4].`,
+      better: `"We can take it one class at a time. I'm here."[cite: 4]` },
+    { label: `Say: "Okay, see you later!" and head to class[cite: 4].`, good: false, trust: 0, next: "end_ok",
+      reaction: `Priya watches you go. She walks to class alone, still unsure how to get through the day[cite: 4].`,
+      explain: `You were there for the hard part, and that matters. The missing step is Link: connecting her with the counselor and following up so she is not carrying the day alone[cite: 4].`,
+      better: `"Would it help to let the counselor know? I can come with you, and I'll check in at lunch."[cite: 4]` }
   ]}
 };
 const ENDINGS = {
  "end_good": {
-  "text": "Priya's grief is not something you can fix, and you do not have to. You acknowledged her loss, let her talk about her grandfather, and helped her find more support. Checking in again over the coming days and weeks will matter, because grief takes time.",
+  "text": "Priya's grief is not something you can fix, and you do not have to. You acknowledged her loss, let her talk about her grandfather, and helped her find more support. Checking in again over the coming days and weeks will matter, because grief takes time[cite: 4].",
   "ranks": [
    [
     80,
@@ -279,7 +268,7 @@ const ENDINGS = {
   ]
  },
  "end_ok": {
-  "text": "You were there for Priya in a hard moment, and that mattered. The missing piece was Link: connecting her with the counselor, and following up later, would give her more support than one friend can.",
+  "text": "You were there for Priya in a hard moment, and that mattered. The missing piece was Link: connecting her with the counselor, and following up later, would give her more support than one friend can[cite: 4].",
   "ranks": [
    [
     0,
@@ -289,7 +278,7 @@ const ENDINGS = {
   ]
  },
  "end_missed": {
-  "text": "Priya got through the morning on her own. The moment is not lost. You can still tell her you are sorry about her grandfather and ask if she wants company. It is rarely too late.",
+  "text": "Priya got through the morning on her own. The moment is not lost. You can still tell her you are sorry about her grandfather and ask if she wants company. It is rarely too late[cite: 4].",
   "ranks": [
    [
     0,
@@ -439,12 +428,12 @@ function applyChoice(c) {
 }
 function showIntro() {
   const rules = el("ul", "", "rules");
-  [`Each choice changes ${META.name}'s trust. Helpful choices raise it and unhelpful ones lower it.`,
-   META.scoring ? "Earn the Look, Listen, and Link badges, and build a streak for bonus points." : "Earn the Look, Listen, and Link badges as you help.",
-   "After every choice you get a plain explanation of what went well or what went wrong.",
-   "Wrong turns are part of practice. You can try again."].forEach(t => rules.appendChild(el("li", t)));
+  [`Each choice changes ${META.name}'s trust. Helpful choices raise it and unhelpful ones lower it[cite: 4].`,
+   META.scoring ? "Earn the Look, Listen, and Link badges, and build a streak for bonus points[cite: 4]." : "Earn the Look, Listen, and Link badges as you help[cite: 4].",
+   "After every choice you get a plain explanation of what went well or what went wrong[cite: 4].",
+   "Wrong turns are part of practice. You can try again[cite: 4]."].forEach(t => rules.appendChild(el("li", t)));
   const warn = el("div", "", "warn"), p1 = el("p");
-  p1.append(el("b", "Your progress is not saved. "), document.createTextNode(`If you close or reload this tab, your ${META.scoring ? "score and choices are" : "choices are"} lost and you will start over.`));
+  p1.append(el("b", "Your progress is not saved. "), document.createTextNode(`If you close or reload this tab, your ${META.scoring ? "score and choices are" : "choices are"} lost and you will start over[cite: 4].`));
   warn.append(p1, el("p", META.safety));
   const go = el("button", "Start the Story", "start"); go.onclick = cinematic;
   const nodes = [el("small", "Before You Start"), P(META.intro)];
@@ -494,7 +483,7 @@ function showEnd(id) {
 window.addEventListener("beforeunload", e => { if (S.on) { e.preventDefault(); e.returnValue = ""; } });
 document.addEventListener("click", e => {
   const a = e.target.closest("a[href]");
-  if (!a || reduce || S.on || a.target || e.metaKey || e.ctrlKey || e.shiftKey) return;
+  if (!a || reduce || a.target || e.metaKey || e.ctrlKey || e.shiftKey) return;
   const u = new URL(a.href, location.href);
   if (u.origin !== location.origin) return;
   e.preventDefault(); document.body.classList.add("leaving"); setTimeout(() => { location.href = a.href; }, 280);
@@ -513,3 +502,4 @@ b.onclick=()=>{on=!on;b.classList.toggle("off",!on);if(on){go=false;start()}else
 </script>
 </body>
 </html>
+```[cite: 4]
